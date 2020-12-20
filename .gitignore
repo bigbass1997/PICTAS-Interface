@@ -1,0 +1,10 @@
+/.gradle/
+/build/
+/PICTAS-Interface.iml
+/PICTAS-Interface.ipr
+/PICTAS-Interface.iws
+/out/
+/pictas.log
+/flash-dump.bin
+/*.m64
+/*.bk2

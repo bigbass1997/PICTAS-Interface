@@ -1,0 +1,70 @@
+package com.lukestadem.pictas.movies.parsers;
+
+import com.lukestadem.pictas.movies.inputs.Input;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
+
+public abstract class Parser {
+	
+	public enum Type {
+		M64, BK2,
+		OTHER
+	}
+	
+	protected final File file;
+	
+	public final Type type;
+	
+	public Parser(File file, Type type){
+		this.file = file;
+		this.type = type;
+	}
+	
+	/**
+	 * Retrieves the input data from this parser's file. The returned data represents an array of frames,
+	 * where each frame has an array of Input objects which contains the inputs for each controller.
+	 * <br><br>
+	 * For example, a file containing 589 frames, using 2 controllers, would be represented as <code>Input[589][2]</code>.
+	 * Where each frame has two controllers worth of input.
+	 * 
+	 * @return inputs of every controller for every frame
+	 */
+	public abstract Input[][] getFrames();
+	
+	/**
+	 * Reads text lines from parser's file into a list of Strings.
+	 * <br><br>
+	 * This method uses <code>Files.readAllLines()</code> for best performance.
+	 * 
+	 * @return list of every line from file
+	 */
+	protected List<String> getFileLines(){
+		try {
+			return Files.readAllLines(file.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Reads all bytes from parser's file into a byte array.
+	 * <br><br>
+	 * This method uses <code>Files.readAllBytes()</code> for best performance.
+	 * 
+	 * @return array of bytes from file
+	 */
+	protected byte[] getFileBytes(){
+		try {
+			return Files.readAllBytes(file.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+}
