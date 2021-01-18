@@ -2,11 +2,18 @@ package com.lukestadem.pictas.movies;
 
 import com.lukestadem.pictas.movies.inputs.Input;
 import com.lukestadem.pictas.movies.parsers.Parser;
+import com.lukestadem.pictas.movies.parsers.ParserBizhawk;
 import com.lukestadem.pictas.movies.parsers.ParserMupen64;
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Movie {
 	
@@ -19,6 +26,8 @@ public class Movie {
 		final Parser parser;
 		if(file.getName().endsWith(".m64")){
 			parser = new ParserMupen64(file);
+		} else if(file.getName().endsWith(".bk2")) {
+			parser = new ParserBizhawk(file);
 		} else {
 			parser = null;
 		}
@@ -47,7 +56,13 @@ public class Movie {
 	}
 	
 	public boolean hasNextFrame(){
-		return frameIndex < frames.length;
+		if(nextFrame() != null){
+			frameIndex--;
+			return true;
+		}
+		frameIndex--;
+		return false;
+		//return frameIndex < frames.length;
 	}
 	
 	/**
@@ -55,5 +70,28 @@ public class Movie {
 	 */
 	public int getMovieLength(){
 		return frames.length;
+	}
+	
+	public void export(int offset){
+		List<Byte> list = new ArrayList<>();
+		for(int i = 0; i < offset; i++){
+			list.add((byte) 0);
+		}
+		
+		for(int i = 0; i < frames.length; i++){
+			for(int j = 0; j < frames[i].length; j++){
+				//System.out.printf("i: %d, j: %d, %b\n", i, j, frames[i][j] == null);
+				for(byte b : frames[i][j].getBytes()){
+					list.add(b);
+				}
+			}
+		}
+		byte[] arr = ArrayUtils.toPrimitive(list.toArray(new Byte[0]));
+		
+		try {
+			Files.write(new File("parsed-output.bin").toPath(), arr, StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

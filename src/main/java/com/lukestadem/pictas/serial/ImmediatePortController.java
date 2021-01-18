@@ -3,7 +3,6 @@ package com.lukestadem.pictas.serial;
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
-import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +24,7 @@ public class ImmediatePortController extends Thread {
 		log.info(Arrays.toString(SerialPort.getCommPorts()));
 		comPort = SerialPort.getCommPorts()[1];
 		comPort.openPort();
+		comPort.setComPortTimeouts(SerialPort.TIMEOUT_WRITE_BLOCKING | SerialPort.TIMEOUT_READ_BLOCKING, 50, 50);
 		log.info("Baudrate allowed? " + comPort.setBaudRate(500000));
 		
 		if(listener != null){
@@ -72,7 +72,9 @@ public class ImmediatePortController extends Thread {
 	}
 	
 	public void writeBytes(byte... bytes){
-		comPort.writeBytes(bytes, bytes.length);
+		for(byte b : bytes){
+			writeByte(b);
+		}
 	}
 	
 	//public void writeBytes(Byte... bytes){

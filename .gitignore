@@ -6,5 +6,5 @@
 /out/
 /pictas.log
 /flash-dump.bin
-/*.m64
-/*.bk2
+/parsed-output.bin
+/movies/

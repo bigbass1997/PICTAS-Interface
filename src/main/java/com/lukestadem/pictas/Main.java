@@ -5,9 +5,7 @@ import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import com.lukestadem.pictas.movies.Movie;
 import com.lukestadem.pictas.movies.inputs.Input;
-import com.lukestadem.pictas.serial.BufferedPortController;
 import com.lukestadem.pictas.serial.ImmediatePortController;
-import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +24,15 @@ public class Main {
 	
 	public static void main(String[] args) {
 		if(argExists(args, "--headless")){
-			final Movie movie = new Movie(new File("bobmario511-yoshisstory.m64"));
+			//final Movie movie = new Movie(new File("movies/goldeneye007.m64"));
+			//final Movie movie = new Movie(new File("movies/Banjo-Kazooie-DeleteSave.bk2"));
+			//final Movie movie = new Movie(new File("movies/hyperresonance-banjokazooie-100p.bk2"));
+			//final Movie movie = new Movie(new File("movies/wyster-twine.m64"));
+			//final Movie movie = new Movie(new File("movies/xenos-diddykongracing.m64"));
+			final Movie movie = new Movie(new File("movies/bobmario511-yoshisstory.m64"));
+			//final Movie movie = new Movie(new File("movies/test-movie.m64"));
+			movie.export(0x400);
+			//movie.export(0);
 			final ImmediatePortController pc = new ImmediatePortController();
 			final SerialPortDataListener listener = new SerialPortDataListener() {
 				@Override
@@ -82,34 +88,55 @@ public class Main {
 				}
 				
 				if(cmd.equalsIgnoreCase("program")){
+					byteBuf.clear();
 					pc.writeByte(ByteUtil.iByte(0xAA));
 					
 					final int pages = (int) Math.ceil(movie.getMovieLength() / 256f);
 					for(int j = 0; j < pages; j++){
+						final byte[] matchArr = new byte[256];
+						
 						while(byteBuf.isEmpty()){}
 						//System.out.println(ByteUtil.bytesToString(ArrayUtils.toPrimitive(byteBuf.toArray(new Byte[0]))));
 						if(byteBuf.removeFirst() == ByteUtil.iByte(0x01)){
 							pc.writeByte(ByteUtil.iByte(0x01));
 							
 							final byte[] bytes = new byte[256];
-							for(int i = 0; i < bytes.length - 4;){
+							for(int i = 0; i < bytes.length;){
 								if(movie.hasNextFrame()){
 									final Input[] frame = movie.nextFrame();
 									for(Input controller : frame){
 										final byte[] controllerInputs = controller.getBytes();
+										//System.out.println(ByteUtil.bytesToString(controllerInputs));
+										
 										for(int k = 0; k < controllerInputs.length; k++){
-											bytes[i + k] = controllerInputs[k];
+											//System.out.println("first: "+ ByteUtil.byteToString(controllerInputs[k]));
+											bytes[i] = controllerInputs[k];
+											matchArr[i] = controllerInputs[k];
+											//System.out.println("match: " + ByteUtil.byteToString(matchArr[i]));
 											i++;
 										}
 									}
 								} else {
 									bytes[i] = 0;
+									matchArr[i] = 0;
 									i++;
 								}
 							}
+							//System.out.println(ByteUtil.bytesToString(matchArr));
 							pc.writeBytes(bytes);
 						} else {
 							pc.writeByte(ByteUtil.iByte(0x00));
+						}
+						//System.out.println(ByteUtil.bytesToString(matchArr));
+						
+						while(byteBuf.size() < 256){}
+						for(int i = 0; i < 256; i++){
+							byte frompic = byteBuf.removeFirst();
+							//log.info("Compare: " + ByteUtil.byteToString(matchArr[i]) + " vs " + ByteUtil.byteToString(frompic));
+							
+							if(frompic != matchArr[i]){
+								log.warn("Write/Read Mismatch! index: " + ((j * 256) + i) + ", Host: " + ByteUtil.byteToString(matchArr[i]) + " vs " + ByteUtil.byteToString(frompic));
+							}
 						}
 					}
 					
@@ -118,6 +145,7 @@ public class Main {
 						pc.writeByte(ByteUtil.iByte(0x00));
 					}
 					byteBuf.clear();
+					log.info("Programming Complete");
 				}
 				
 				if(cmd.equalsIgnoreCase("dump")){
@@ -134,12 +162,14 @@ public class Main {
 					}
 					ByteUtil.writeToFile("flash-dump.bin", byteBuf.toArray(new Byte[0]));
 					byteBuf.clear();
+					log.info("Dumping Complete");
 				}
 				
 				if(cmd.equalsIgnoreCase("run")){
 					pc.writeByte(ByteUtil.iByte(0x03));
 					while(byteBuf.isEmpty()){}
 					byteBuf.clear();
+					log.info("Turn on console to start!");
 				}
 			}
 			scanner.close();

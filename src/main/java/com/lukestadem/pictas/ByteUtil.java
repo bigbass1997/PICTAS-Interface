@@ -5,9 +5,18 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 public class ByteUtil {
+	
+	public static String wordToString(byte b){
+		char[] hexDigits = new char[4];
+		hexDigits[0] = Character.forDigit((b >> 12) & 0xFFF, 16);
+		hexDigits[1] = Character.forDigit((b >> 8) & 0xFF, 16);
+		hexDigits[2] = Character.forDigit((b >> 4) & 0xF, 16);
+		hexDigits[3] = Character.forDigit((b & 0xF), 16);
+		
+		return (new String(hexDigits)).toUpperCase();
+	}
 	
 	public static String byteToString(byte b){
 		char[] hexDigits = new char[2];
