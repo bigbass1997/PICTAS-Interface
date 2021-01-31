@@ -8,6 +8,20 @@ import java.io.IOException;
 
 public class ByteUtil {
 	
+	public static String doublewordToString(byte b){
+		char[] hexDigits = new char[8];
+		hexDigits[0] = Character.forDigit((b >> 28) & 0xFFFFFFF, 16);
+		hexDigits[1] = Character.forDigit((b >> 24) & 0xFFFFFF, 16);
+		hexDigits[2] = Character.forDigit((b >> 20) & 0xFFFFF, 16);
+		hexDigits[3] = Character.forDigit((b >> 16) & 0xFFFF, 16);
+		hexDigits[0] = Character.forDigit((b >> 12) & 0xFFF, 16);
+		hexDigits[1] = Character.forDigit((b >>  8) & 0xFF, 16);
+		hexDigits[2] = Character.forDigit((b >>  4) & 0xF, 16);
+		hexDigits[3] = Character.forDigit((b & 0xF), 16);
+		
+		return (new String(hexDigits)).toUpperCase();
+	}
+	
 	public static String wordToString(byte b){
 		char[] hexDigits = new char[4];
 		hexDigits[0] = Character.forDigit((b >> 12) & 0xFFF, 16);

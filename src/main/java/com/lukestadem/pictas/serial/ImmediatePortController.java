@@ -22,7 +22,7 @@ public class ImmediatePortController extends Thread {
 	public ImmediatePortController(SerialPortDataListener listener){
 		
 		log.info(Arrays.toString(SerialPort.getCommPorts()));
-		comPort = SerialPort.getCommPorts()[1];
+		comPort = SerialPort.getCommPorts()[0];
 		comPort.openPort();
 		comPort.setComPortTimeouts(SerialPort.TIMEOUT_WRITE_BLOCKING | SerialPort.TIMEOUT_READ_BLOCKING, 50, 50);
 		log.info("Baudrate allowed? " + comPort.setBaudRate(500000));
