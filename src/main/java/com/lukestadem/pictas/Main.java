@@ -29,9 +29,9 @@ public class Main {
 			//final Movie movie = new Movie(new File("movies/hyperresonance-banjokazooie-100p.bk2"));
 			//final Movie movie = new Movie(new File("movies/wyster-twine.m64"));
 			//final Movie movie = new Movie(new File("movies/xenos-diddykongracing.m64"));
-			final Movie movie = new Movie(new File("movies/bobmario511-yoshisstory.m64"));
+			final Movie movie = new Movie(new File("movies/sm64120stars.m64"));
 			//final Movie movie = new Movie(new File("movies/test-movie.m64"));
-			movie.export(0x400);
+			movie.export(0);
 			//movie.export(0);
 			final ImmediatePortController pc = new ImmediatePortController();
 			final SerialPortDataListener listener = new SerialPortDataListener() {
@@ -91,7 +91,10 @@ public class Main {
 					byteBuf.clear();
 					pc.writeByte(ByteUtil.iByte(0xAA));
 					
-					final int pages = (int) Math.ceil(movie.getMovieLength() / 256f);
+					int counter = 0;
+					
+					final int pages = (int) Math.ceil(movie.getNumBytes() / 256f);
+					System.out.println(movie.getNumFrames() + ", " + pages);
 					for(int j = 0; j < pages; j++){
 						final byte[] matchArr = new byte[256];
 						
@@ -124,6 +127,9 @@ public class Main {
 							}
 							//System.out.println(ByteUtil.bytesToString(matchArr));
 							pc.writeBytes(bytes);
+							
+							//System.out.println(counter + ": " + ByteUtil.bytesToString(bytes));
+							//counter += 256;
 						} else {
 							pc.writeByte(ByteUtil.iByte(0x00));
 						}

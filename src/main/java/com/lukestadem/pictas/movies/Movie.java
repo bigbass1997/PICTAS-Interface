@@ -68,8 +68,12 @@ public class Movie {
 	/**
 	 * @return length of movie in frames (ignores number of controllers)
 	 */
-	public int getMovieLength(){
+	public int getNumFrames(){
 		return frames.length;
+	}
+	
+	public int getNumBytes(){
+		return frames.length * frames[0].length * frames[0][0].getBytes().length;
 	}
 	
 	public void export(int offset){
