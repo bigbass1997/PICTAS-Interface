@@ -2,7 +2,6 @@ package com.lukestadem.pictas.movies.parsers;
 
 import com.lukestadem.pictas.ByteUtil;
 import com.lukestadem.pictas.movies.inputs.Input;
-import com.lukestadem.pictas.movies.inputs.InputN64;
 import com.lukestadem.pictas.movies.inputs.InputNES;
 
 import java.io.File;

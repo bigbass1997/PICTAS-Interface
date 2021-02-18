@@ -5,6 +5,7 @@ import com.lukestadem.pictas.movies.parsers.Parser;
 import com.lukestadem.pictas.movies.parsers.ParserBizhawk;
 import com.lukestadem.pictas.movies.parsers.ParserFceux;
 import com.lukestadem.pictas.movies.parsers.ParserMupen64;
+import com.lukestadem.pictas.movies.parsers.ParserR08;
 import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,8 @@ public class Movie {
 			parser = new ParserBizhawk(file);
 		} else if(file.getName().endsWith(".fm2")) {
 			parser = new ParserFceux(file);
+		} else if(file.getName().endsWith(".r08")) {
+			parser = new ParserR08(file, 1);
 		} else {
 			parser = null;
 		}

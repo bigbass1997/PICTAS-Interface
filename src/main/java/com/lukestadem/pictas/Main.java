@@ -33,9 +33,15 @@ public class Main {
 			//final Movie movie = new Movie(new File("movies/test-movie.m64"));
 			
 			//final Movie movie = new Movie(new File("movies/feos-darkwingduck-pacifist.fm2"));
-			final Movie movie = new Movie(new File("movies/aglar,meshuggahv1-ducktales.fm2"));
+			//final Movie movie = new Movie(new File("movies/aglar,meshuggahv1-ducktales.fm2"));
 			//final Movie movie = new Movie(new File("movies/alyosha-mickeymousecapade.fm2"));
 			//final Movie movie = new Movie(new File("movies/fatratknight-rcproam-allgoldtrophies.fm2"));
+			//final Movie movie = new Movie(new File("movies/lordtom-smb3-totalcontrol.fm2"));
+			//final Movie movie = new Movie(new File("movies/genisto2-smb3.fm2"));
+			
+			final Movie movie = new Movie(new File("movies/feos-darkwingduck-pacifist.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/taseditor_meshuggah_coolkirby_masterjun_mugg_was0x-kirbyadventure-gameendglitch.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/alyosha-mickeymousecapade.frame.r08"));
 			movie.export(0);
 			
 			final ImmediatePortController pc = new ImmediatePortController();

@@ -17,6 +17,7 @@ public abstract class Parser {
 	public enum Type {
 		M64, BK2,
 		FM2,
+		R08, R16,
 		OTHER
 	}
 	
