@@ -29,10 +29,15 @@ public class Main {
 			//final Movie movie = new Movie(new File("movies/hyperresonance-banjokazooie-100p.bk2"));
 			//final Movie movie = new Movie(new File("movies/wyster-twine.m64"));
 			//final Movie movie = new Movie(new File("movies/xenos-diddykongracing.m64"));
-			final Movie movie = new Movie(new File("movies/sm64120stars.m64"));
+			//final Movie movie = new Movie(new File("movies/sm64120stars.m64"));
 			//final Movie movie = new Movie(new File("movies/test-movie.m64"));
+			
+			//final Movie movie = new Movie(new File("movies/feos-darkwingduck-pacifist.fm2"));
+			final Movie movie = new Movie(new File("movies/aglar,meshuggahv1-ducktales.fm2"));
+			//final Movie movie = new Movie(new File("movies/alyosha-mickeymousecapade.fm2"));
+			//final Movie movie = new Movie(new File("movies/fatratknight-rcproam-allgoldtrophies.fm2"));
 			movie.export(0);
-			//movie.export(0);
+			
 			final ImmediatePortController pc = new ImmediatePortController();
 			final SerialPortDataListener listener = new SerialPortDataListener() {
 				@Override
@@ -85,6 +90,15 @@ public class Main {
 				
 				if(cmd.equalsIgnoreCase("ping")){
 					pc.writeByte(ByteUtil.iByte(0x01));
+					while(byteBuf.isEmpty()){}
+					final byte first = byteBuf.removeFirst();
+					if(first == ByteUtil.iByte(0xEE)){
+						log.info("pong!");
+					} else {
+						log.error("err: " + ByteUtil.byteToString(first));
+					}
+					
+					byteBuf.clear();
 				}
 				
 				if(cmd.equalsIgnoreCase("program")){
@@ -171,8 +185,15 @@ public class Main {
 					log.info("Dumping Complete");
 				}
 				
-				if(cmd.equalsIgnoreCase("run")){
+				if(cmd.equalsIgnoreCase("n64run")){
 					pc.writeByte(ByteUtil.iByte(0x03));
+					while(byteBuf.isEmpty()){}
+					byteBuf.clear();
+					log.info("Turn on console to start!");
+				}
+				
+				if(cmd.equalsIgnoreCase("nesrun")){
+					pc.writeByte(ByteUtil.iByte(0x04));
 					while(byteBuf.isEmpty()){}
 					byteBuf.clear();
 					log.info("Turn on console to start!");

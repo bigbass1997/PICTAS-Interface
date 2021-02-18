@@ -3,6 +3,7 @@ package com.lukestadem.pictas.movies;
 import com.lukestadem.pictas.movies.inputs.Input;
 import com.lukestadem.pictas.movies.parsers.Parser;
 import com.lukestadem.pictas.movies.parsers.ParserBizhawk;
+import com.lukestadem.pictas.movies.parsers.ParserFceux;
 import com.lukestadem.pictas.movies.parsers.ParserMupen64;
 import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
@@ -28,6 +29,8 @@ public class Movie {
 			parser = new ParserMupen64(file);
 		} else if(file.getName().endsWith(".bk2")) {
 			parser = new ParserBizhawk(file);
+		} else if(file.getName().endsWith(".fm2")) {
+			parser = new ParserFceux(file);
 		} else {
 			parser = null;
 		}
