@@ -33,7 +33,7 @@ public class Movie {
 		} else if(file.getName().endsWith(".fm2")) {
 			parser = new ParserFceux(file);
 		} else if(file.getName().endsWith(".r08")) {
-			parser = new ParserR08(file, 1);
+			parser = new ParserR08(file, 2);
 		} else {
 			parser = null;
 		}

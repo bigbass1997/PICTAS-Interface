@@ -34,9 +34,13 @@ public class ParserR08 extends Parser {
 			for(int i = 0; i < numFrames; i++){
 				final int o = (i * 2);
 				for(int j = 0; j < movieControllers; j++){
-					final int offset = o + (j * 2);
+					final int offset = o + j;
 					
-					frames[i][j] = new InputNES(ByteUtil.iByte(bytes[offset] ^ ByteUtil.iByte(0xFF))); // TODO dynamically support 2 controllers
+					if(offset < bytes.length){
+						frames[i][j] = new InputNES(ByteUtil.iByte(bytes[offset] ^ ByteUtil.iByte(0xFF)));
+					} else {
+						frames[i][j] = new InputNES(ByteUtil.iByte(0xFF)); // if TAS length is odd, fill in missing input with 0xFF
+					}
 				}
 			}
 			
