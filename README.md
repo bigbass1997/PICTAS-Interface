@@ -1,4 +1,6 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+#### This project has been reimplemented in Rust. The new project repo can be found here: [https://github.com/bigbass1997/pictas-interface-rs](https://github.com/bigbass1997/pictas-interface-rs)
+
 ### Description
 PICTAS-Interface is the host interface software for the [PICTAS replay device](https://github.com/bigbass1997/PICTAS). This project is still an early prototype, code is likely to be messy and buggy. Others are allowed to write their own interface software if they wish; the PICTAS does _not_ require that this particular software is used for communication.
 

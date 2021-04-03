@@ -39,12 +39,64 @@ public class Main {
 			//final Movie movie = new Movie(new File("movies/lordtom-smb3-totalcontrol.fm2"));
 			//final Movie movie = new Movie(new File("movies/genisto2-smb3.fm2"));
 			
-			final Movie movie = new Movie(new File("movies/feos-darkwingduck-pacifist.frame.r08"));
-			//final Movie movie = new Movie(new File("movies/blazephlozardarchanfelbaxter-tetris-modeb.frame.r08"));
-			//final Movie movie = new Movie(new File("movies/taseditor_meshuggah_coolkirby_masterjun_mugg_was0x-kirbyadventure-gameendglitch.frame.r08"));
-			//final Movie movie = new Movie(new File("movies/alyosha-mickeymousecapade.frame.r08"));
-			//final Movie movie = new Movie(new File("movies/geesk-gjjjgjjj-tmnt3.frame.r08"));
-			//final Movie movie = new Movie(new File("movies/zyr2288-aiqiyou-jackal-2p.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/feos-darkwingduck-pacifist.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/blazephlozardarchanfelbaxter-tetris-modeb.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/taseditor_meshuggah_coolkirby_masterjun_mugg_was0x-kirbyadventure-gameendglitch.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/taseditor-kirbysadventure.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/alyosha-mickeymousecapade.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/geesk-gjjjgjjj-tmnt3.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/zyr2288-aiqiyou-jackal-2p.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/lordtom-legendofzelda-swordless.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/meshuggah_feos-battletoads-gameendglitch.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/meshuggah_feos_koh1fds-battletoads-gameendglitch.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/algar-batman.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/fatratknight-gauntlet.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/taseditorv2-zelda2.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/arc_fatratknight_inzult_risingtempest-zeldaii-warpless.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/shinryuu-megaman2j.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/aglasscage_finalfighter_pirohiko_shinryuu-rockman2.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/aglar_lekukie-marblemadness.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/aglar-marblemadness.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/Zelda_II_warp.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/arc_inzult-zeldaii.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/arcinzultv2-zeldaii.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/challengerv2-castlevania.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/theaxeman_inzult_gyre-finalfantasy-stairsglitch.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/theaxemanv4-finalfantasy.frame.r08"));
+			
+			//final Movie movie = new Movie(new File("movies/nes/meshuggah-ghostbusters.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/miezarumonov2-wizardry.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/philc2-donkeykong.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/meshuggah-greatwaldosearch.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/meshuggah_fcxiaopengyou-northsouth.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/meshuggah1-archon.frame.r08"));
+			
+			//final Movie movie = new Movie(new File("movies/nes/dunnius-hydlide.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/adelikat-jaws.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/aqfaq-pinballquest.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/baddap1-strider-nes.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/biggyboy_usedpizza-cosmopolicegalivan-gameend.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/dwangoac-highspeed.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/meshuggah_randil-indianajonesandthelastcrusade.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/taotao-miniputt.frame.r08"));
+			
+			//final Movie movie = new Movie(new File("movies/nes/chefstef-arkanoid-nes-warpless.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/Bionic_Commando.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/lordtom_tompa-smb3-warpless.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/lordtom_maru_tompav2-smb3-warps.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/mchazardv2-miketysonspunchout.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/lordtom-excitebike.frame.r08"));
+			
+			//final Movie movie = new Movie(new File("movies/nes/aglar_hotarubi-gimmickbestending.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/meshuggah2-streemerz.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/adelikat-aglar-mothrayas-really_tall-samsara-streemerz-streeeeemerz.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/soig-superc-2players.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/xipo-samsara_ninjagaidenii.frame.r08"));
+			//final Movie movie = new Movie(new File("movies/nes/xxnkxx1-battlecity.frame.r08"));
+			
+			final Movie movie = new Movie(new File("movies/nes/alex_ik-contra-nes-1p.frame.r08"));
+			
+			
 			movie.export(0);
 			
 			final ImmediatePortController pc = new ImmediatePortController();
